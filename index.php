@@ -6,7 +6,7 @@ $format = $requestPath[0];
 $username = $requestPath[1];
 
 $dbh = new PDO(
-    "mysql:host={$config['database']['hostname']};dbname={$config['database']['database']};charset=utf8",
+    "{$config['database']['type']}:host={$config['database']['hostname']};dbname={$config['database']['database']};charset=utf8",
     $config['database']['username'],
     $config['database']['password']
 );
