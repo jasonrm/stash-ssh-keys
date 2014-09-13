@@ -32,10 +32,7 @@ if ($stmt = $dbh->prepare($query)) {
     }
     $stmt->closeCursor();
 
-    if ($format == 'plain') {
-        header('Content-Type: text/plain');
-        echo join(array_values($buffer), "\n") . "\n";
-    } else if ($format == 'json') {
+    if ($format == 'json') {
         header('Content-Type: application/json');
         $obj_buffer = [];
         foreach ($buffer as $key => $value) {
@@ -45,6 +42,9 @@ if ($stmt = $dbh->prepare($query)) {
             ];
         }
         echo json_encode($obj_buffer) . "\n";
+    } else {
+        header('Content-Type: text/plain');
+        echo join(array_values($buffer), "\n") . "\n";
     }
 
 }
